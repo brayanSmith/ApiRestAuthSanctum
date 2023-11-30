@@ -101,9 +101,9 @@ class EmployeeController extends Controller
     }
     //crearemos la funcion de empleados por departamento va a mostrar cuantos empleados hay
     public function EmployeesByDepartament(){
-        $employees = Employee::select(DB::raw('count(employees.id) as count',
-        'departaments.name'))
-        ->join('departaments', 'departaments.id','=','employees.departament_id')
+        $employees = Employee::select(DB::raw('count(employees.id) as count,
+        departaments.name'))
+        ->rightjoin('departaments', 'departaments.id','=','employees.departament_id')
         ->groupBy('departaments.name')->get();
         return response()->json($employees);
     }
