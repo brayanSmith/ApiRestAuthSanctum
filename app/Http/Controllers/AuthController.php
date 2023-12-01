@@ -30,11 +30,11 @@ class AuthController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'User Created succefully',
-            //Se encripta la contraseña
+            //cript password
             'token' => $user->createToken('API TOKEN')->plainTextToken
         ],200);
     }
-        public function login(){
+        public function login(Request $request){
             $rules =[
                 'email' => 'required|string|email|max:100',
                 'password' => 'required|string'
